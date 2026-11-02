@@ -15,3 +15,37 @@ dialog.querySelector('.next').addEventListener('click',()=>showPhoto(current+1))
 dialog.addEventListener('close',()=>{document.body.style.overflow='';photos[current].focus();});
 dialog.addEventListener('click',event=>{if(event.target===dialog){const box=dialog.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)dialog.close();}});
 dialog.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'){event.preventDefault();showPhoto(current-1);}if(event.key==='ArrowRight'){event.preventDefault();showPhoto(current+1);}});
+
+const music = document.querySelector('#wedding-music');
+const musicToggle = document.querySelector('#music-toggle');
+const musicStatus = document.querySelector('#music-status');
+let musicStarting = false;
+function syncMusicControl() {
+ const playing = !music.paused;
+ musicToggle.textContent = playing ? 'Pause music' : 'Play music';
+ musicToggle.setAttribute('aria-pressed', String(playing));
+}
+async function startMusic(automatic = false) {
+ if (musicStarting) return;
+ musicStarting = true;
+ musicStatus.textContent = '';
+ try { await music.play(); }
+ catch (error) {
+  if (!automatic) musicStatus.textContent = error.name === 'NotAllowedError'
+   ? 'Tap Play music to listen.'
+   : 'Music could not load. Please try again.';
+ } finally { musicStarting = false; syncMusicControl(); }
+}
+musicToggle.addEventListener('click', () => {
+ if (musicStarting) return;
+ if (music.paused) startMusic();
+ else music.pause();
+});
+music.addEventListener('play', syncMusicControl);
+music.addEventListener('pause', syncMusicControl);
+music.addEventListener('error', () => {
+ musicStatus.textContent = 'Music could not load. Please try again.';
+ syncMusicControl();
+});
+music.volume = 0.5;
+startMusic(true);

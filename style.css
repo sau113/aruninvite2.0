@@ -6,3 +6,12 @@
 @media(min-width:801px){.hero-photo{object-position:center top}}
 @media(min-width:801px){.hero-photo{object-position:center 15%}}
 @media(max-width:800px){.hero-copy{top:4%}.hero h1{font-size:clamp(52px,16vw,66px)}}
+
+/* In-flow music controls: scroll with the page and never cover content. */
+.music-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 20px;padding:10px 22px;background:var(--ivory);border-bottom:1px solid #e7e1d5;color:var(--green)}
+.music-title{font-family:Georgia,serif;font-style:italic;font-size:15px}
+.music-title>span{color:var(--maroon);margin-right:8px}
+#music-toggle{border:1px solid var(--green);border-radius:24px;background:transparent;color:var(--green);padding:8px 18px;min-height:44px;min-width:120px;cursor:pointer;font-size:12px}
+#music-toggle:hover,#music-toggle[aria-pressed="true"]{background:var(--green);color:var(--ivory)}
+.music-status{width:100%;text-align:center;font-size:11px;color:var(--maroon)}
+.music-status:empty{display:none}
