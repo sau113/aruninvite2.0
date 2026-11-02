@@ -7,11 +7,36 @@
 @media(min-width:801px){.hero-photo{object-position:center 15%}}
 @media(max-width:800px){.hero-copy{top:4%}.hero h1{font-size:clamp(52px,16vw,66px)}}
 
-/* In-flow music controls: scroll with the page and never cover content. */
-.music-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 20px;padding:10px 22px;background:var(--ivory);border-bottom:1px solid #e7e1d5;color:var(--green)}
-.music-title{font-family:Georgia,serif;font-style:italic;font-size:15px}
-.music-title>span{color:var(--maroon);margin-right:8px}
-#music-toggle{border:1px solid var(--green);border-radius:24px;background:transparent;color:var(--green);padding:8px 18px;min-height:44px;min-width:120px;cursor:pointer;font-size:12px}
+
+/* Music remains within the normal navigation flow. */
+#music-toggle{border:1px solid #b8a078;border-radius:24px;background:transparent;color:var(--green);padding:8px 14px;min-height:44px;cursor:pointer;font-size:11px;white-space:nowrap}
 #music-toggle:hover,#music-toggle[aria-pressed="true"]{background:var(--green);color:var(--ivory)}
-.music-status{width:100%;text-align:center;font-size:11px;color:var(--maroon)}
+.music-status{display:block;text-align:center;background:var(--ivory);font-size:12px;color:var(--maroon)}
 .music-status:empty{display:none}
+body.welcome-active{overflow:hidden}
+#welcome{position:fixed;inset:0;margin:0;width:100%;height:100%;max-width:none;max-height:none;padding:32px 20px;border:0;overflow:auto;background:radial-gradient(ellipse at center,#fffdf7,var(--ivory) 70%);color:var(--green);text-align:center;opacity:1;transition:opacity .35s ease .65s}
+#welcome::backdrop{background:var(--ivory)}
+.welcome-inner{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:auto}
+#welcome h2{font-size:clamp(35px,6vw,56px);line-height:1.17;letter-spacing:-1.5px;margin:24px 0 12px}
+#welcome h2 em{font-weight:400;color:var(--maroon)}
+#welcome #open-invitation{position:static;display:flex;flex-direction:column;align-items:center;border:0;background:none;color:var(--green);padding:26px 12px 12px;cursor:pointer;font-size:14px;max-width:100%;perspective:1000px}
+.envelope{display:block;position:relative;width:min(340px,76vw);aspect-ratio:1.55;background:#ded3be;border:1px solid #cfbfa0;border-radius:4px;box-shadow:0 20px 38px #203b3214;isolation:isolate}
+.envelope-letter{position:absolute;inset:12px 13px 7px;background:#fffdf7;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #d9c9aa;transition:transform .65s ease .15s}
+.envelope-letter>span{font-family:Georgia,serif;font-size:clamp(22px,5vw,30px);font-style:italic}
+.envelope-letter small{font-size:8px;letter-spacing:2px;margin-top:10px;color:var(--muted)}
+.envelope-front{position:absolute;inset:0;background:linear-gradient(32deg,#eee6d7 49.7%,transparent 50%) left/50.1% 100% no-repeat,linear-gradient(-32deg,#e9dfcd 49.7%,transparent 50%) right/50.1% 100% no-repeat;z-index:2;border-radius:3px}
+.envelope-front::after{content:"";position:absolute;inset:0;background:#f0e8d9;clip-path:polygon(0 100%,50% 43%,100% 100%)}
+.envelope-flap{position:absolute;inset:0;background:#e4d8c2;clip-path:polygon(0 0,100% 0,50% 58%);transform-origin:top;transition:transform .6s ease;z-index:3;backface-visibility:hidden}
+.wax-seal{position:absolute;z-index:4;left:50%;top:53%;transform:translate(-50%,-50%);width:66px;height:66px;display:flex;align-items:center;justify-content:center;border-radius:47% 53% 49% 51%;background:radial-gradient(circle at 35% 25%,#ac5c5b,#803638);border:3px solid #a45655;box-shadow:0 3px 6px #48251f35,inset 0 0 0 2px #71333445;color:#f3dcc1;font-family:Georgia,serif;font-size:22px;transition:opacity .2s,transform .4s}
+.wax-seal>span{font-style:italic;font-size:16px;margin:0 2px}
+.open-label{display:block;margin-top:36px;border-radius:30px;padding:13px 28px;background:var(--green);color:var(--ivory);font-size:12px;letter-spacing:.5px;transition:background .2s}
+#open-invitation:hover .open-label{background:#375548}
+#welcome-note{font-size:11px;color:var(--muted);margin:0}
+.welcome-date{font-size:9px;letter-spacing:2px;color:var(--muted);margin-top:36px}
+#welcome.opening{opacity:0;pointer-events:none}
+#welcome.opening .envelope-flap{transform:rotateX(180deg)}
+#welcome.opening .wax-seal{opacity:0;transform:translate(-50%,-50%) scale(.8)}
+#welcome.opening .envelope-letter{transform:translateY(-36px)}
+@media(max-width:800px){.nav{padding:0 16px}.nav nav{gap:12px}.nav .monogram{font-size:25px}#music-toggle{padding:8px 10px;font-size:10px}}
+@media(max-width:360px){.nav nav{gap:8px;font-size:9px}.nav{padding:0 10px}}
+@media(prefers-reduced-motion:reduce){#welcome{transition:opacity .15s ease!important}#welcome.opening .envelope-letter,#welcome.opening .envelope-flap{transform:none}}

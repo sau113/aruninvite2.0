@@ -48,4 +48,29 @@ music.addEventListener('error', () => {
  syncMusicControl();
 });
 music.volume = 0.5;
-startMusic(true);
+const welcome = document.querySelector('#welcome');
+const openInvitation = document.querySelector('#open-invitation');
+let invitationOpening = false;
+function revealInvitation(withMusic) {
+ if (invitationOpening) return;
+ invitationOpening = true;
+ // Invoke play directly in the tap handler, before any animation or await.
+ if (withMusic) startMusic();
+ welcome.classList.add('opening');
+ window.setTimeout(() => {
+  welcome.close();
+  document.body.classList.remove('welcome-active');
+  const title = document.querySelector('.hero h1');
+  title.setAttribute('tabindex', '-1');
+  title.focus({preventScroll: true});
+ }, reduced ? 160 : 1000);
+}
+openInvitation.addEventListener('click', () => revealInvitation(true));
+welcome.addEventListener('cancel', event => {
+ event.preventDefault();
+ revealInvitation(false);
+});
+if (typeof welcome.showModal === 'function') {
+ welcome.showModal();
+ document.body.classList.add('welcome-active');
+}
