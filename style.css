@@ -42,3 +42,16 @@ body.welcome-active{overflow:hidden}
 #welcome #open-invitation:focus-visible{outline:2px solid var(--green);outline-offset:6px}
 #welcome.opening #open-invitation{animation:none}
 @keyframes seal-pulse{0%,100%{box-shadow:0 3px 6px #48251f35,inset 0 0 0 2px #71333445,0 0 0 0 #93444520}50%{box-shadow:0 3px 6px #48251f35,inset 0 0 0 2px #71333445,0 0 0 8px #93444500}}
+
+/* Shared wedding countdown; its own section keeps the portrait unobstructed. */
+[hidden]{display:none!important}
+.wedding-countdown{padding:38px 24px 34px;text-align:center;border-bottom:1px solid #e7e1d5;background:var(--ivory)}
+.countdown-units{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:460px;margin:22px auto 18px}
+.countdown-units>div+div{border-left:1px solid #ded2c1}
+.countdown-units strong{display:block;font-family:Georgia,serif;font-size:clamp(32px,6vw,48px);font-weight:400;font-variant-numeric:tabular-nums;color:var(--maroon);line-height:1.2}
+.countdown-units span{display:block;margin-top:8px;font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--muted)}
+.countdown-date{font-size:11px;color:var(--muted)}
+.event-details{margin-top:24px;padding:18px 20px;border-left:2px solid var(--gold);background:#faf7f080;font-size:12px}
+.event-details strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--maroon);margin-bottom:4px}
+.sangeeth{background:#f3eae5}
+@media(max-width:360px){.wedding-countdown{padding-left:16px;padding-right:16px}.wedding-countdown .eyebrow{font-size:9px;letter-spacing:2px}.countdown-units span{letter-spacing:1px}}

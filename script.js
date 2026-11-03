@@ -1,3 +1,45 @@
+// Add the confirmed Google Maps link here once available; both cards use it.
+const FRIENDS_VENUE_MAP_URL = '';
+const WEDDING_START = new Date('2026-12-06T11:30:00+05:30').getTime();
+const isFriendsInvitation = /^\/friends\/?$/.test(window.location.pathname);
+if (isFriendsInvitation) {
+ const grid = document.querySelector('.event-grid');
+ grid.prepend(document.querySelector('#friends-events').content.cloneNode(true));
+ grid.querySelectorAll('.event-number').forEach((label, index) => {
+  label.textContent = label.textContent.replace(/^\d+/, String(index + 1).padStart(2, '0'));
+ });
+ if (FRIENDS_VENUE_MAP_URL) {
+  grid.querySelectorAll('.friends-map').forEach(link => {
+   link.href = FRIENDS_VENUE_MAP_URL;
+   link.hidden = false;
+  });
+ }
+}
+function updateWeddingCountdown() {
+ const remaining = Math.max(0, Math.ceil((WEDDING_START - Date.now()) / 1000));
+ const values = {
+  days: Math.floor(remaining / 86400),
+  hours: Math.floor(remaining / 3600) % 24,
+  minutes: Math.floor(remaining / 60) % 60,
+  seconds: remaining % 60
+ };
+ const units = document.querySelector('.countdown-units');
+ units.hidden = remaining === 0;
+ Object.entries(values).forEach(([unit, value]) => {
+  document.querySelector('[data-countdown="' + unit + '"]').textContent = String(value).padStart(2, '0');
+ });
+ document.querySelector('#countdown-heading').textContent = remaining > 0
+  ? 'COUNTING DOWN TO OUR WEDDING' : 'The celebration is here!';
+ return remaining;
+}
+updateWeddingCountdown();
+const countdownInterval = window.setInterval(() => {
+ if (updateWeddingCountdown() === 0) window.clearInterval(countdownInterval);
+}, 1000);
+document.addEventListener('visibilitychange', () => {
+ if (!document.hidden) updateWeddingCountdown();
+});
+
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if ('IntersectionObserver' in window && !reduced) {
  document.documentElement.classList.add('js');

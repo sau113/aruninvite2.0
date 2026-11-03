@@ -26,3 +26,11 @@ Once the final public domain is known, replace the relative og:image value with 
 The original invitation includes the family contact numbers and residential addresses. The page links to this original card; those details are not repeated in the main layout.
 
 Validation: JavaScript syntax checked, all local referenced files verified, desktop and 390px mobile layouts inspected, gallery open/next/close interactions checked. No backend, external font dependency, analytics, RSVP collection or music.
+
+## Invitation versions and countdown
+- `/`: wedding and reception.
+- `/friends`: Rangoli (4 December), Sangeeth (5 December), wedding and reception.
+- Both routes share index.html, styles, music, gallery and one wedding countdown.
+- Countdown target: 6 December 2026 at 11:30 AM IST, explicit +05:30 offset in script.js.
+- To enable directions on both friends-only event cards, set FRIENDS_VENUE_MAP_URL in script.js to the confirmed Google Maps URL. Until then, no directions button is displayed.
+- Vercel rewrites /friends to the shared invitation. Use a rewrite-capable server to preview that route locally.
