@@ -27,11 +27,11 @@
   "rewrites": [
     {
       "source": "/friends",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/friends/",
-      "destination": "/index.html"
+      "destination": "/"
     }
   ]
 }
