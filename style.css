@@ -55,3 +55,21 @@ body.welcome-active{overflow:hidden}
 .event-details strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--maroon);margin-bottom:4px}
 .sangeeth{background:#f3eae5}
 @media(max-width:360px){.wedding-countdown{padding-left:16px;padding-right:16px}.wedding-countdown .eyebrow{font-size:9px;letter-spacing:2px}.countdown-units span{letter-spacing:1px}}
+
+.shoot-album { background: #203b32; color: #faf7f0; }
+.album-opening, .album-portraits, .album-credit { max-width: 1120px; margin-inline: auto; }
+.album-opening { display: grid; grid-template-columns: 1fr 1.8fr; align-items: center; gap: clamp(18px, 4vw, 60px); }
+.album-title .eyebrow { color: #dfc99f; }
+.album-title h2 { margin: .3em 0; font-size: clamp(42px, 5.2vw, 82px); line-height: 1; }
+.album-title h2 em { color: #e5c8bf; }
+.album-date { font-family: Georgia, serif; font-style: italic; }
+.album-print { display: block; background: #f7f1e4; border: 0; padding: clamp(3px,.45vw,7px); cursor: zoom-in; width: 100%; }
+.album-print img { width: 100%; height: auto; }
+.album-print:focus-visible { outline: 3px solid #efc86c; outline-offset: 3px; }
+.album-portraits { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: clamp(9px,1.5vw,22px); margin-top: clamp(12px,2vw,28px); }
+.album-credit { text-align: right; font: italic 14px Georgia,serif; margin-top: 14px; color: #e3d7c1; }
+@media (max-width: 680px) {
+  .album-opening { grid-template-columns: 1fr; }
+  .album-title { text-align: center; }
+  .album-portraits { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
